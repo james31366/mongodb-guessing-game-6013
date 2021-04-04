@@ -43,7 +43,7 @@ Download the code from git using `git clone`. Do the following step to use this 
 ## Running the application
 
 1. Run and install the docker container
-   
+
    ```bash
    docker-compose up -d
    ```
