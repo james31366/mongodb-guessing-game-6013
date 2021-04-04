@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Setup{% endblock %}
+{% block content %}
+    <h4>Make Answer</h4>
+    {% for element in current_game.answer[0:] %}
+        {{ element|join('') }}
+    {% endfor %}
+    <br>
+    <form action="{{ url_for('make_answer') }}" method="post">
+        <input type="submit" class="btn btn-outline-primary" name="answer" value="A">
+        <input type="submit" class="btn btn-outline-primary" name="answer" value="B">
+        <input type="submit" class="btn btn-outline-primary" name="answer" value="C">
+        <input type="submit" class="btn btn-outline-primary" name="answer" value="D">
+    </form>
+
+    {% if current_game["stage"] >= 3 %}
+        <br>
+        <form action="{{ url_for('guessing') }}" method="get">
+            <input type="submit" class="btn btn-outline-success" name="finish" value="Finish">
+        </form>
+    {% endif %}
+{% endblock %}

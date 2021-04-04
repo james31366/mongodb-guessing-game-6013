@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Guessing{% endblock %}
+{% block content %}
+    {% if not win_data %}
+        <h4>Guessing</h4>
+        <label>Hint: </label>
+        {% for element in current_game.hint[0:] %}
+            {{ element|join('') }}
+        {% endfor %}
+        <br>
+        <form action="{{ url_for('guessing') }}" method="post">
+            <input type="submit" class="btn btn-outline-primary" name="guessing" value="A">
+            <input type="submit" class="btn btn-outline-primary" name="guessing" value="B">
+            <input type="submit" class="btn btn-outline-primary" name="guessing" value="C">
+            <input type="submit" class="btn btn-outline-primary" name="guessing" value="D">
+        </form>
+        <br>
+
+        <label>Guess: </label>
+        {% for element in current_game.guessing[0:] %}
+            {{ element|join('') }}
+        {% endfor %}
+    {% endif %}
+    {% if win_data %}
+        <h4>Result</h4>
+        <h2>You Win!!</h2>
+    {% endif %}
+    {% if win_data %}
+        <form action="{{ url_for('index') }}" method="get">
+            <input type="submit" class="btn btn-outline-success" name="again" value="Play Again">
+        </form>
+    {% endif %}
+
+    <label>count: {{ current_game["count"] }}</label>
+{% endblock %}
